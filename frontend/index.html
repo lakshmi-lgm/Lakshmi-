@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenie - AI Learning Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="logo-icon">🧞‍♂️</span>
+                <h2>EduGenie</h2>
+            </div>
+            
+            <div class="section upload-section">
+                <h3>Study Material</h3>
+                <input type="file" id="pdfUpload" accept=".pdf" style="display: none;">
+                <button class="btn btn-primary" onclick="document.getElementById('pdfUpload').click()">
+                    📄 Upload PDF
+                </button>
+                <div id="fileStatus" class="status-text">No document loaded</div>
+            </div>
+
+            <div class="section tools-section">
+                <h3>AI Tools</h3>
+                <button class="tool-btn" onclick="generateTool('notes')">📝 Generate Notes</button>
+                <button class="tool-btn" onclick="generateTool('flashcards')">🃏 Flashcards</button>
+                <button class="tool-btn" onclick="generateTool('quiz')">❓ Quiz Generator</button>
+                <button class="tool-btn" onclick="generateTool('summary')">📌 Document Summary</button>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <header class="topbar">
+                <h1>Gemini AI Learning Workspace</h1>
+            </header>
+
+            <div class="content-area">
+                <div id="toolOutputContainer" class="tool-output-card hidden">
+                    <div class="card-header">
+                        <h3 id="toolTitle">Generated Material</h3>
+                        <button class="btn-close" onclick="closeToolOutput()">×</button>
+                    </div>
+                    <div id="toolContent" class="card-body"></div>
+                </div>
+
+                <div class="chat-container" id="chatContainer">
+                    <div class="message system-message">
+                        <strong>EduGenie:</strong> Welcome! Upload a PDF to start asking contextual questions, or chat directly to explore topics.
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="userInput" placeholder="Ask EduGenie anything about your studies..." onkeydown="if(event.key==='Enter') sendMessage()">
+                <button class="btn btn-send" onclick="sendMessage()">Send</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
